@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SafeSphere AI</title>
+
+<style>
+
+/* GLOBAL */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f8fb;
+color:#1e293b;
+}
+
+/* COLORS */
+
+:root{
+--primary:#2F4F6F;
+--secondary:#2F9E8F;
+--accent:#5EC6FF;
+--light:#F4F8FB;
+--dark:#0f172a;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+background:linear-gradient(#938b8b);
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+z-index:1000;
+}
+
+.nav-container{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 20px;
+}
+
+.logo{
+font-size:20px;
+font-weight:700;
+color:rgb(0, 0, 0);
+}
+
+.nav-links{
+display:flex;
+}
+
+.nav-links a{
+margin-left:25px;
+color:white;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:#e3f6ff;
+}
+
+/* MOBILE MENU */
+
+.menu-toggle{
+display:none;
+flex-direction:column;
+cursor:pointer;
+}
+
+.menu-toggle span{
+width:25px;
+height:3px;
+background:white;
+margin:4px 0;
+display:block;
+}
+
+@media(max-width:900px){
+
+.menu-toggle{
+display:flex;
+}
+
+.nav-links{
+position:absolute;
+top:60px;
+left:0;
+width:100%;
+background:linear-gradient(120deg,#2F4F6F,#2F9E8F);
+flex-direction:column;
+align-items:center;
+display:none;
+padding:20px 0;
+}
+
+.nav-links a{
+margin:12px 0;
+font-size:18px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+}
+
+/* HERO */
+
+.hero{
+padding:140px 8%;
+background:linear-gradient(135deg,#eef6ff,#eafdf8);
+}
+
+.hero-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.hero h1{
+font-size:44px;
+color:var(--primary);
+margin-bottom:20px;
+}
+
+.hero p{
+color:#555;
+line-height:1.7;
+margin-bottom:30px;
+}
+
+.btn{
+padding:12px 24px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+margin-right:10px;
+}
+
+.btn-primary{
+background:var(--primary);
+color:white;
+}
+
+.btn-primary:hover{
+background:var(--secondary);
+}
+
+.btn-secondary{
+border:2px solid var(--primary);
+color:var(--primary);
+}
+
+.btn-secondary:hover{
+background:var(--primary);
+color:white;
+}
+
+.hero img{
+width:100%;
+max-width:420px;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+/* ABOUT */
+
+.about{
+padding:120px 8%;
+background:linear-gradient(120deg,#2F4F6F,#2F9E8F);
+color:white;
+}
+
+.about-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
+
+.about h2{
+font-size:36px;
+margin-bottom:15px;
+}
+
+.about p{
+line-height:1.8;
+margin-bottom:16px;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.feature{
+background:white;
+color:#333;
+padding:10px;
+border-radius:6px;
+}
+
+/* PROCESS */
+
+.process{
+padding:120px 8%;
+background:#f4f8fb;
+text-align:center;
+}
+
+.process-grid{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:50px;
+}
+
+.process-card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.process-card h3{
+color:var(--primary);
+margin-bottom:10px;
+}
+
+/* PLATFORM */
+
+.platform{
+padding:120px 8%;
+background:linear-gradient(135deg,#eef6ff,#eafdf8);
+text-align:center;
+}
+
+.platform-grid{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-top:40px;
+}
+
+.platform-card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* FAQ */
+
+.faq{
+padding:120px 8%;
+background:linear-gradient(135deg,#eef6ff,#eafdf8);
+}
+
+.faq-container{
+max-width:900px;
+margin:auto;
+}
+
+.faq-item{
+background:white;
+padding:15px;
+border-radius:6px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+/* CONTACT */
+
+.contact{
+padding:120px 8%;
+background:#f4f8fb;
+}
+
+.contact-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.contact-form button{
+background:var(--secondary);
+color:white;
+border:none;
+padding:12px;
+border-radius:6px;
+width:100%;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+background:linear-gradient(120deg,#2F4F6F,#2F9E8F);
+color:white;
+padding:50px 8%;
+text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero-container,
+.about-container,
+.contact-container{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.process-grid,
+.platform-grid,
+.pricing-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="nav-container">
+
+<div class="logo">SafeSphere AI</div>
+
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#process">Process</a>
+<a href="#platform">Platform</a>
+<a href="#pricing">Pricing</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</div>
+
+</div>
+</header>
+
+<!-- HOME SECTION -->
+
+<section class="home-section" id="home">
+
+<div class="home-container">
+
+<!-- LEFT CONTENT -->
+
+<div class="home-text">
+
+<h1>
+Predictive Safety & <br>
+Workforce Intelligence
+</h1>
+
+<p>
+SafeSphere AI is a predictive safety intelligence platform that
+helps security, care and facilities organisations identify
+operational risks before incidents occur.
+</p>
+
+<div class="home-buttons">
+
+<a href="#contact" class="btn-primary">Request Demo</a>
+
+<a href="#platform" class="btn-secondary">Learn More</a>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT IMAGE -->
+
+<div class="home-image">
+
+<img src="ai1.jpeg" alt="SafeSphere AI Platform">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* HOME SECTION */
+
+.home-section{
+padding:140px 8%;
+background:#f3f3f3;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* CONTAINER */
+
+.home-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+align-items:center;
+gap:60px;
+}
+
+/* TEXT */
+
+.home-text h1{
+font-size:44px;
+line-height:1.2;
+color:#111;
+margin-bottom:20px;
+}
+
+.home-text p{
+font-size:16px;
+color:#444;
+line-height:1.7;
+margin-bottom:30px;
+}
+
+/* BUTTONS */
+
+.home-buttons{
+display:flex;
+gap:15px;
+}
+
+/* PRIMARY BUTTON */
+
+.btn-primary{
+background:#111;
+color:white;
+padding:12px 22px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn-primary:hover{
+background:#333;
+}
+
+/* SECONDARY BUTTON */
+
+.btn-secondary{
+border:2px solid #111;
+color:#111;
+padding:10px 22px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn-secondary:hover{
+background:#111;
+color:white;
+}
+
+/* IMAGE */
+
+.home-image img{
+width:100%;
+max-width:420px;
+animation:float 4s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+
+@keyframes float{
+
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.home-container{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.home-buttons{
+justify-content:center;
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+console.log("SafeSphere AI Home Section Loaded");
+
+</script>
+<!-- ABOUT SECTION -->
+
+<section class="about-section" id="about">
+
+<div class="about-container">
+
+<!-- LEFT SIDE -->
+
+<div class="about-left">
+
+<h2>About SafeSphere AI</h2>
+
+<p>
+SafeSphere AI is a predictive safety and workforce intelligence
+platform designed to help organisations detect operational
+risks early and improve workforce decision-making.
+</p>
+
+<p>
+The platform analyses workforce behaviour, incident history
+and staffing patterns using advanced analytics to identify
+hidden risk indicators before safety incidents occur.
+</p>
+
+<p>
+By transforming operational data into predictive insights,
+SafeSphere AI enables organisations to strengthen workplace
+safety, maintain compliance readiness and improve
+operational efficiency across security, care and facilities sectors.
+</p>
+
+<div class="about-features">
+
+<div class="feature">Predictive Safety Intelligence</div>
+<div class="feature">AI Risk Pattern Detection</div>
+<div class="feature">Workforce Behaviour Analytics</div>
+<div class="feature">Compliance Monitoring</div>
+<div class="feature">Operational Risk Insights</div>
+<div class="feature">Decision Support Dashboards</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
+
+<div class="about-right">
+
+<div class="founder-card">
+
+<h3 class="founder-title">Founder</h3>
+
+<div class="divider"></div>
+
+<p>
+SafeSphere AI was founded by <strong>Maryam Ayub</strong>,
+with the vision of improving organisational safety
+through intelligent data analysis and predictive
+risk management technology.
+</p>
+
+<p>
+The platform focuses on helping organisations
+in safety-critical sectors identify operational
+risks earlier and build safer working environments.
+</p>
+
+<p>
+By combining artificial intelligence with
+operational safety intelligence, SafeSphere AI
+aims to deliver smarter and more proactive
+workforce risk management solutions.
+</p>
+
+<a href="#" class="linkedin-btn">View LinkedIn</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* SECTION */
+
+.about-section{
+padding:120px 8%;
+background:#938b8b;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* CONTAINER */
+
+.about-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1.3fr 1fr;
+gap:70px;
+align-items:center;
+}
+
+/* LEFT */
+
+.about-left h2{
+font-size:36px;
+margin-bottom:20px;
+color:#000;
+}
+
+.about-left p{
+line-height:1.8;
+margin-bottom:18px;
+color:#222;
+}
+
+/* FEATURES */
+
+.about-features{
+margin-top:25px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.feature{
+background:white;
+color:#000;
+padding:10px 14px;
+border-radius:6px;
+font-size:14px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* FOUNDER CARD */
+
+.founder-card{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.founder-title{
+margin-bottom:5px;
+color:#000;
+}
+
+.divider{
+width:60px;
+height:3px;
+background:#333;
+margin-bottom:15px;
+}
+
+.founder-card p{
+line-height:1.7;
+margin-bottom:15px;
+color:#333;
+}
+
+/* BUTTON */
+
+.linkedin-btn{
+display:inline-block;
+padding:10px 20px;
+background:#111;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-weight:600;
+}
+
+.linkedin-btn:hover{
+background:#333;
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.about-container{
+grid-template-columns:1fr;
+text-align:center;
+gap:40px;
+}
+
+.about-features{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+console.log("SafeSphere AI About Section Loaded");
+
+</script>
+<!-- HOW IT WORKS SECTION -->
+
+<section class="works-section" id="process">
+
+<h2 class="works-title">How SafeSphere AI Works</h2>
+
+<p class="works-sub">
+SafeSphere AI transforms workforce data and incident records into
+predictive safety intelligence. The platform analyses operational
+patterns to detect risk signals early and help organisations prevent
+incidents before they occur.
+</p>
+
+<div class="works-divider"></div>
+
+
+<div class="works-grid">
+
+<!-- STEP 1 -->
+
+<div class="work-card">
+
+<img src="ai2.jpeg" class="work-img">
+
+<div class="step">01</div>
+
+<h3>Operational Data Collection</h3>
+
+<p>
+SafeSphere AI securely collects operational information such as
+incident reports, workforce schedules, staffing patterns and
+environmental signals from organisational systems.
+</p>
+
+</div>
+
+
+<!-- STEP 2 -->
+
+<div class="work-card">
+
+<img src="ai3.jpeg" class="work-img">
+
+<div class="step">02</div>
+
+<h3>AI Risk Pattern Analysis</h3>
+
+<p>
+Machine learning models analyse behavioural trends,
+historical incidents and workforce activity to identify
+hidden risk patterns and operational vulnerabilities.
+</p>
+
+</div>
+
+
+<!-- STEP 3 -->
+
+<div class="work-card">
+
+<img src="ai4.jpeg" class="work-img">
+
+<div class="step">03</div>
+
+<h3>Predictive Risk Modelling</h3>
+
+<p>
+The platform generates predictive risk scores by modelling
+workforce fatigue, staffing density and operational pressure
+points across shifts and locations.
+</p>
+
+</div>
+
+
+<!-- STEP 4 -->
+
+<div class="work-card">
+
+<img src="ai5.jpeg" class="work-img">
+
+<div class="step">04</div>
+
+<h3>Real-Time Safety Intelligence</h3>
+
+<p>
+Managers receive real-time dashboards, alerts and
+recommendations that help them prevent incidents,
+improve compliance readiness and optimise workforce safety.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* SECTION */
+
+.works-section{
+padding:120px 8%;
+background:#f3f3f3;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+/* TITLE */
+
+.works-title{
+font-size:36px;
+color:#000;
+margin-bottom:10px;
+}
+
+/* SUBTITLE */
+
+.works-sub{
+max-width:650px;
+margin:auto;
+color:#222;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+/* DIVIDER */
+
+.works-divider{
+width:90px;
+height:3px;
+background:#333;
+margin:0 auto 60px auto;
+border-radius:2px;
+}
+
+/* GRID */
+
+.works-grid{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+}
+
+/* CARD */
+
+.work-card{
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:left;
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.work-card:hover{
+transform:translateY(-8px);
+box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+
+.work-img{
+width:100%;
+height:140px;
+object-fit:cover;
+border-radius:6px;
+margin-bottom:12px;
+}
+
+/* STEP */
+
+.step{
+font-size:13px;
+font-weight:700;
+color:#000;
+margin-bottom:6px;
+}
+
+/* TEXT */
+
+.work-card h3{
+margin-bottom:8px;
+font-size:16px;
+}
+
+.work-card p{
+font-size:14px;
+color:#444;
+line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.works-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const cards=document.querySelectorAll(".work-card");
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+const top=card.getBoundingClientRect().top;
+
+if(top<window.innerHeight-80){
+card.style.opacity="1";
+card.style.transform="translateY(0)";
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+card.style.opacity="0";
+card.style.transform="translateY(40px)";
+card.style.transition="0.6s";
+});
+
+</script>
+<!-- PLATFORM SECTION -->
+
+<section class="platform-section" id="platform">
+
+<h2 class="platform-title">SafeSphere AI Platform</h2>
+
+<p class="platform-sub">
+SafeSphere AI is a predictive safety and workforce intelligence
+platform that helps organisations detect operational risks early,
+improve compliance visibility and optimise workforce performance.
+</p>
+
+<div class="platform-divider"></div>
+
+
+<div class="platform-container">
+
+
+<!-- FEATURE 1 -->
+
+<div class="platform-card">
+
+<img src="ai9.jpeg" class="platform-img">
+
+<h3>Predictive Risk Intelligence</h3>
+
+<p>
+AI algorithms analyse workforce behaviour, shift structures
+and historical incident patterns to identify emerging risks
+before they escalate into safety incidents.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+The predictive engine continuously evaluates operational
+data streams to generate early warning signals for managers.
+This allows organisations to intervene early and prevent
+safety failures across security operations and care environments.
+</div>
+
+</div>
+
+
+<!-- FEATURE 2 -->
+
+<div class="platform-card">
+
+<img src="ai7.jpeg" class="platform-img">
+
+<h3>Workforce Fatigue Detection</h3>
+
+<p>
+SafeSphere AI monitors complex shift patterns and overtime
+exposure to identify fatigue risks that may affect workforce
+performance and safety outcomes.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+The platform analyses staffing density, night shifts and
+extended work hours to generate fatigue risk indicators.
+Managers receive alerts that help balance schedules and
+reduce operational stress on frontline teams.
+</div>
+
+</div>
+
+
+<!-- FEATURE 3 -->
+
+<div class="platform-card">
+
+<img src="ai8.jpeg" class="platform-img">
+
+<h3>Rota Risk Mapping</h3>
+
+<p>
+AI-powered rota analysis identifies staffing gaps,
+high-risk deployments and operational pressure points
+within workforce schedules.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+SafeSphere AI visualises workforce deployment patterns
+and highlights shifts where incident probability may
+increase due to staffing shortages or excessive workload.
+</div>
+
+</div>
+
+
+<!-- FEATURE 4 -->
+
+<div class="platform-card">
+
+<img src="ai6.jpeg" class="platform-img">
+
+<h3>Compliance Intelligence</h3>
+
+<p>
+The platform converts operational data into regulatory
+compliance insights aligned with UK safety and workforce
+standards.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+Compliance dashboards help organisations monitor key
+operational indicators related to inspections, workforce
+training compliance and safety reporting obligations.
+</div>
+
+</div>
+
+
+<!-- FEATURE 5 -->
+
+<div class="platform-card">
+
+<img src="ai11.jpeg" class="platform-img">
+
+<h3>Behaviour Pattern Analysis</h3>
+
+<p>
+Machine learning models identify behavioural anomalies
+across teams that may signal operational stress or
+emerging safety risks.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+The AI system continuously analyses incident data,
+workforce behaviour trends and reporting activity
+to detect abnormal patterns requiring attention.
+</div>
+
+</div>
+
+
+<!-- FEATURE 6 -->
+
+<div class="platform-card">
+
+<img src="ai10.jpeg" class="platform-img">
+
+<h3>Operational Intelligence Dashboard</h3>
+
+<p>
+Interactive dashboards provide real-time insights into
+risk indicators, workforce performance and operational
+safety metrics.
+</p>
+
+<button class="learn-btn">Learn More</button>
+
+<div class="more-text">
+Managers can view predictive safety scores, workforce
+utilisation trends and compliance alerts from a single
+centralised platform interface.
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* SECTION */
+
+.platform-section{
+padding:120px 8%;
+background:#938b8b;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+/* TITLE */
+
+.platform-title{
+font-size:36px;
+color:#000;
+margin-bottom:10px;
+}
+
+/* SUBTITLE */
+
+.platform-sub{
+max-width:700px;
+margin:auto;
+font-size:15px;
+line-height:1.7;
+color:#222;
+margin-bottom:20px;
+}
+
+/* DIVIDER */
+
+.platform-divider{
+width:90px;
+height:3px;
+background:#333;
+margin:0 auto 60px auto;
+border-radius:2px;
+}
+
+/* GRID */
+
+.platform-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+/* CARD */
+
+.platform-card{
+background:white;
+border-radius:12px;
+padding:25px;
+text-align:left;
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.platform-card:hover{
+transform:translateY(-8px);
+box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+
+.platform-img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:6px;
+margin-bottom:12px;
+}
+
+/* TITLE */
+
+.platform-card h3{
+margin-bottom:8px;
+font-size:17px;
+color:#000;
+}
+
+/* TEXT */
+
+.platform-card p{
+font-size:14px;
+color:#444;
+line-height:1.6;
+}
+
+/* BUTTON */
+
+.learn-btn{
+margin-top:10px;
+padding:8px 14px;
+background:#111;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:13px;
+}
+
+.learn-btn:hover{
+background:#333;
+}
+
+/* HIDDEN TEXT */
+
+.more-text{
+display:none;
+margin-top:10px;
+font-size:13px;
+color:#555;
+line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.platform-container{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+/* LEARN MORE BUTTON */
+
+document.querySelectorAll(".learn-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+let text=btn.nextElementSibling;
+
+if(text.style.display==="block"){
+text.style.display="none";
+btn.innerText="Learn More";
+}else{
+text.style.display="block";
+btn.innerText="Show Less";
+}
+
+});
+
+});
+
+</script>
+<!-- PRICING SECTION -->
+
+<section class="pricing-section" id="pricing">
+
+<h2 class="pricing-title">SafeSphere AI Pricing</h2>
+
+<p class="pricing-sub">
+Flexible subscription plans designed for security, care
+and facilities organisations to deploy predictive safety
+and workforce intelligence across operations.
+</p>
+
+<div class="pricing-divider"></div>
+
+<div class="pricing-container">
+
+
+<!-- STARTER -->
+
+<div class="price-card">
+
+<h3>Starter</h3>
+
+<div class="price">£99</div>
+
+<p class="period">per organisation / month</p>
+
+<ul class="features">
+<li>✔ Incident Data Monitoring</li>
+<li>✔ Workforce Safety Dashboard</li>
+<li>✔ Basic Risk Indicators</li>
+<li>✔ Compliance Monitoring</li>
+<li>✔ Email Support</li>
+</ul>
+
+<button class="btn">Get Started</button>
+
+</div>
+
+
+<!-- PROFESSIONAL -->
+
+<div class="price-card popular">
+
+<div class="badge">Most Popular</div>
+
+<h3>Professional</h3>
+
+<div class="price">£249</div>
+
+<p class="period">per organisation / month</p>
+
+<ul class="features">
+<li>✔ Predictive Risk Intelligence</li>
+<li>✔ Rota Risk Density Mapping</li>
+<li>✔ AI Compliance Dashboard</li>
+<li>✔ Workforce Behaviour Insights</li>
+<li>✔ Priority Support</li>
+</ul>
+
+<button class="btn">Start Plan</button>
+
+</div>
+
+
+<!-- ENTERPRISE -->
+
+<div class="price-card">
+
+<h3>Enterprise</h3>
+
+<div class="price">Custom</div>
+
+<p class="period">for large organisations</p>
+
+<ul class="features">
+<li>✔ Full Predictive Safety Platform</li>
+<li>✔ Fatigue Risk Modelling</li>
+<li>✔ SIA & CQC Compliance Indexing</li>
+<li>✔ Advanced Analytics Dashboard</li>
+<li>✔ Dedicated Success Manager</li>
+</ul>
+
+<button class="btn">Contact Sales</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<style>
+
+/* SECTION */
+
+.pricing-section{
+padding:120px 8%;
+background:#e5e5e5;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+/* TITLE */
+
+.pricing-title{
+font-size:38px;
+color:#000;
+margin-bottom:10px;
+}
+
+/* SUBTITLE */
+
+.pricing-sub{
+max-width:650px;
+margin:auto;
+color:#222;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+/* DIVIDER */
+
+.pricing-divider{
+width:90px;
+height:3px;
+background:#222;
+margin:0 auto 60px auto;
+border-radius:2px;
+}
+
+/* GRID */
+
+.pricing-container{
+max-width:1050px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+/* CARD */
+
+.price-card{
+background:white;
+padding:35px 30px;
+border-radius:12px;
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+transition:0.4s;
+position:relative;
+}
+
+.price-card:hover{
+transform:translateY(-10px);
+box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* POPULAR CARD */
+
+.popular{
+border:2px solid #000;
+transform:scale(1.05);
+}
+
+/* BADGE */
+
+.badge{
+position:absolute;
+top:-12px;
+left:50%;
+transform:translateX(-50%);
+background:#000;
+color:white;
+font-size:12px;
+padding:5px 14px;
+border-radius:20px;
+}
+
+/* PRICE */
+
+.price{
+font-size:34px;
+font-weight:bold;
+margin:12px 0;
+}
+
+.period{
+font-size:13px;
+color:#555;
+margin-bottom:15px;
+}
+
+/* FEATURES */
+
+.features{
+list-style:none;
+padding:0;
+margin:25px 0;
+text-align:left;
+}
+
+.features li{
+margin-bottom:12px;
+font-size:14px;
+color:#333;
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:10px;
+padding:12px 22px;
+border:none;
+background:#111;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#333;
+transform:scale(1.05);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.pricing-container{
+grid-template-columns:1fr;
+}
+
+.popular{
+transform:none;
+}
+
+}
+
+</style>
+
+
+<script>
+
+/* SCROLL TO CONTACT */
+
+const priceBtns=document.querySelectorAll(".btn");
+
+priceBtns.forEach(btn=>{
+btn.addEventListener("click",()=>{
+document.getElementById("contact").scrollIntoView({
+behavior:"smooth"
+});
+});
+});
+
+</script>
+<!-- FAQ SECTION -->
+
+<section class="faq-section" id="faq">
+
+<h2 class="faq-title">Frequently Asked Questions</h2>
+
+<p class="faq-sub">
+Learn more about how SafeSphere AI helps organisations
+predict safety risks and improve workforce intelligence.
+</p>
+
+<div class="faq-divider"></div>
+
+<div class="faq-container">
+
+<!-- FAQ 1 -->
+
+<div class="faq-item">
+<div class="faq-question">What is SafeSphere AI?</div>
+<div class="faq-answer">
+SafeSphere AI is a predictive safety and workforce intelligence platform
+designed for security, social care and facilities organisations. It
+analyses operational data to identify risk patterns and help teams
+prevent incidents before they occur.
+</div>
+</div>
+
+<!-- FAQ 2 -->
+
+<div class="faq-item">
+<div class="faq-question">How does SafeSphere AI improve safety?</div>
+<div class="faq-answer">
+The platform evaluates workforce behaviour, incident history,
+and staffing patterns using AI models. Managers receive early
+alerts and insights that allow them to reduce risks and improve
+operational decision making.
+</div>
+</div>
+
+<!-- FAQ 3 -->
+
+<div class="faq-item">
+<div class="faq-question">Which industries can use SafeSphere AI?</div>
+<div class="faq-answer">
+SafeSphere AI is built for organisations operating in regulated
+industries such as private security companies, care providers,
+and facilities management organisations where safety and
+compliance are critical.
+</div>
+</div>
+
+<!-- FAQ 4 -->
+
+<div class="faq-item">
+<div class="faq-question">Does the platform support compliance monitoring?</div>
+<div class="faq-answer">
+Yes. SafeSphere AI includes compliance intelligence dashboards
+that monitor operational indicators and highlight potential
+regulatory risks before inspections occur.
+</div>
+</div>
+
+<!-- FAQ 5 -->
+
+<div class="faq-item">
+<div class="faq-question">Is SafeSphere AI a cloud-based platform?</div>
+<div class="faq-answer">
+Yes. SafeSphere AI is delivered as a secure cloud SaaS platform.
+Managers can access dashboards, predictive analytics and
+risk alerts from any device using a standard web browser.
+</div>
+</div>
+
+<!-- FAQ 6 -->
+
+<div class="faq-item">
+<div class="faq-question">How can organisations get started?</div>
+<div class="faq-answer">
+Organisations can begin by requesting a platform demonstration.
+After onboarding, SafeSphere AI integrates operational data
+such as workforce schedules and incident records to provide
+predictive safety insights.
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* FAQ SECTION */
+
+.faq-section{
+padding:120px 8%;
+background:#938b8b;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+/* TITLE */
+
+.faq-title{
+font-size:36px;
+color:#000;
+margin-bottom:10px;
+}
+
+/* SUBTITLE */
+
+.faq-sub{
+max-width:650px;
+margin:auto;
+color:#444;
+font-size:15px;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+/* DIVIDER */
+
+.faq-divider{
+width:80px;
+height:3px;
+background:#444;
+margin:0 auto 50px auto;
+border-radius:2px;
+}
+
+/* CONTAINER */
+
+.faq-container{
+max-width:850px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+/* FAQ ITEM */
+
+.faq-item{
+background:white;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+overflow:hidden;
+text-align:left;
+transition:0.3s;
+}
+
+.faq-item:hover{
+transform:translateY(-3px);
+}
+
+/* QUESTION */
+
+.faq-question{
+padding:18px 22px;
+font-weight:600;
+cursor:pointer;
+position:relative;
+font-size:15px;
+color:#111;
+}
+
+/* PLUS ICON */
+
+.faq-question::after{
+content:"+";
+position:absolute;
+right:22px;
+font-size:20px;
+color:#333;
+}
+
+/* ANSWER */
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+padding:0 22px;
+color:#555;
+font-size:14px;
+line-height:1.7;
+transition:0.35s;
+}
+
+/* ACTIVE STATE */
+
+.faq-item.active .faq-answer{
+max-height:220px;
+padding:0 22px 20px;
+}
+
+.faq-item.active .faq-question::after{
+content:"−";
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.faq-title{
+font-size:28px;
+}
+
+.faq-sub{
+font-size:14px;
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+/* FAQ TOGGLE */
+
+const faqItems=document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item=>{
+
+item.querySelector(".faq-question").addEventListener("click",()=>{
+
+item.classList.toggle("active");
+
+});
+
+});
+
+</script>
+
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section" id="contact">
+
+<div class="contact-wrapper">
+
+<!-- LEFT SIDE -->
+
+<div class="contact-info">
+
+<h2>Contact SafeSphere AI</h2>
+
+<p class="contact-desc">
+Interested in learning how SafeSphere AI can help your organisation
+predict safety risks and improve workforce intelligence?
+Send us a message and our team will contact you.
+</p>
+
+<div class="contact-cards">
+
+<div class="info-card">
+<h4>Platform Support</h4>
+<p>Technical help and product guidance</p>
+</div>
+
+<div class="info-card">
+<h4>Business Partnerships</h4>
+<p>Partnerships and collaboration opportunities</p>
+</div>
+
+<div class="info-card">
+<h4>Product Demonstration</h4>
+<p>Schedule a SafeSphere AI platform demo</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FORM SIDE -->
+
+<div class="contact-form-box">
+
+<form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+
+<input type="hidden" name="access_key" value="02ea4254-c467-4ee2-9188-cd087cb393bc">
+
+<input type="text" name="name" placeholder="Full Name" required>
+
+<input type="email" name="email" placeholder="Email Address" required>
+
+<input type="text" name="company" placeholder="Organisation / Company">
+
+<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+<p id="formMsg"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+/* CONTACT SECTION */
+
+.contact-section{
+padding:120px 8%;
+background:#e5e5e5;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* CONTAINER */
+
+.contact-wrapper{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+/* LEFT SIDE */
+
+.contact-info h2{
+font-size:36px;
+color:#111;
+margin-bottom:15px;
+}
+
+.contact-desc{
+color:#333;
+line-height:1.7;
+margin-bottom:30px;
+font-size:15px;
+}
+
+/* INFO CARDS */
+
+.contact-cards{
+display:grid;
+gap:16px;
+}
+
+.info-card{
+background:white;
+padding:18px 20px;
+border-radius:10px;
+border-left:4px solid #333;
+box-shadow:0 8px 25px rgba(0,0,0,0.06);
+transition:0.3s;
+}
+
+.info-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 30px rgba(0,0,0,0.1);
+}
+
+.info-card h4{
+color:#000;
+margin-bottom:5px;
+font-size:16px;
+}
+
+.info-card p{
+font-size:14px;
+color:#555;
+}
+
+/* FORM BOX */
+
+.contact-form-box{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* INPUTS */
+
+.contact-form-box input,
+.contact-form-box textarea{
+width:100%;
+padding:13px;
+margin-bottom:14px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
+outline:none;
+transition:0.2s;
+}
+
+.contact-form-box input:focus,
+.contact-form-box textarea:focus{
+border-color:#333;
+}
+
+/* BUTTON */
+
+.contact-form-box button{
+width:100%;
+padding:14px;
+background:#111;
+color:white;
+border:none;
+border-radius:6px;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.contact-form-box button:hover{
+background:#333;
+}
+
+/* MESSAGE */
+
+#formMsg{
+margin-top:10px;
+font-size:13px;
+color:#111;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.contact-wrapper{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.contact-form-box{
+padding:30px;
+}
+
+}
+
+</style>
+
+
+<script>
+
+const form=document.getElementById("contactForm");
+const msg=document.getElementById("formMsg");
+
+form.addEventListener("submit",function(){
+
+msg.innerText="Sending your message...";
+
+setTimeout(()=>{
+msg.innerText="Message sent successfully!";
+},1500);
+
+});
+
+</script>
+
+<!-- FOOTER SECTION -->
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<!-- COMPANY INFO -->
+
+<div class="footer-about">
+
+<h3>SafeSphere AI</h3>
+
+<p>
+SafeSphere AI is a predictive safety and workforce intelligence platform
+helping security, care and facilities organisations detect risks early,
+improve compliance and strengthen operational decision making.
+</p>
+
+</div>
+
+
+<!-- PLATFORM LINKS -->
+
+<div class="footer-links">
+
+<h4>Platform</h4>
+
+<a href="#home">Home</a>
+<a href="#platform">Platform</a>
+<a href="#process">Process</a>
+<a href="#pricing">Pricing</a>
+
+</div>
+
+
+<!-- COMPANY LINKS -->
+
+<div class="footer-links">
+
+<h4>Company</h4>
+
+<a href="#about">About</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER BOTTOM -->
+
+<div class="footer-bottom">
+
+<p>© 2026 SafeSphere AI Platform. All Rights Reserved.</p>
+
+<button class="top-btn" onclick="scrollTopPage()">↑</button>
+
+</div>
+
+</footer>
+
+
+<style>
+
+/* FOOTER */
+
+.footer{
+background:#938b8b;   /* gray background */
+padding:70px 8% 25px;
+font-family:'Segoe UI',sans-serif;
+color:#111;
+}
+
+/* CONTAINER */
+
+.footer-container{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr;
+gap:40px;
+}
+
+/* COMPANY INFO */
+
+.footer-about h3{
+margin-bottom:12px;
+font-size:20px;
+color:#000;
+}
+
+.footer-about p{
+font-size:14px;
+line-height:1.7;
+color:#222;
+}
+
+/* LINKS */
+
+.footer-links{
+display:flex;
+flex-direction:column;
+}
+
+.footer-links h4{
+margin-bottom:10px;
+font-size:16px;
+color:#000;
+}
+
+.footer-links a{
+text-decoration:none;
+color:#333;
+margin-bottom:8px;
+font-size:14px;
+transition:0.3s;
+}
+
+.footer-links a:hover{
+color:#000;
+transform:translateX(5px);
+}
+
+/* BOTTOM AREA */
+
+.footer-bottom{
+max-width:1100px;
+margin:35px auto 0;
+border-top:1px solid #bfbfbf;
+padding-top:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+}
+
+/* SCROLL BUTTON */
+
+.top-btn{
+background:#111;
+color:white;
+border:none;
+width:36px;
+height:36px;
+border-radius:50%;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.top-btn:hover{
+background:#333;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.footer-container{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.footer-bottom{
+flex-direction:column;
+gap:12px;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function scrollTopPage(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
