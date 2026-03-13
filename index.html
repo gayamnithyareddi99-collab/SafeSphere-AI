@@ -363,7 +363,31 @@ grid-template-columns:1fr;
 
 </style>
 </head>
+<script>
 
+/* MOBILE MENU TOGGLE */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+/* OPEN / CLOSE MENU */
+
+menuToggle.addEventListener("click", function(){
+    navLinks.classList.toggle("active");
+});
+
+
+/* CLOSE MENU WHEN CLICKING A LINK */
+
+const links = document.querySelectorAll(".nav-links a");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+    });
+});
+
+</script>
 <body>
 
 <header class="navbar">
